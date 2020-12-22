@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { initApolloClient } from './util/apollo-client';
-// import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider } from 'react-apollo';
 import Demo from './demo';
 
 
@@ -18,18 +18,17 @@ const client = initApolloClient({
 });
 
 console.log('client',client)
-console.log('session', process.env.REACT_APP_SESSION_TOKEN)
 
 const App: React.FC = () => (
   <div className='App' style={{ height: '100vh', width: '100vw' }}>
-    <Demo apollo={client} />
+    <Demo />
   </div>
 );
 
-// const WithProvider: React.FC = () => (
-//     <ApolloProvider client={client}>
-//       <App />
-//     </ApolloProvider> 
-// );
+const WithProvider: React.FC = () => (
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider> 
+);
 
-export default App;
+export default WithProvider;
